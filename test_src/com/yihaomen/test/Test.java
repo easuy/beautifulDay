@@ -122,16 +122,16 @@ public class Test {
             }
         } finally {
             session.close();
-        }
+        }     
     }
 	public static void main(String[] args) {
-		forString();//类全路径调用 
+		forString();//类全路径调用    
 		forClass();//类名调用 
 		
 		getUserList("%");//查询集合List
 		addUser();
 		updateUser();
 		deleteUser(3);
-		getUserArticles(1);
+		//getUserArticles(1);//多表 一对多 查询
 	}
 }

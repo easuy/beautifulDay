@@ -35,7 +35,7 @@
     </resultMap>
 
 	<!-- User 联合文章进行查询 方法之二的配置 (多对一的方式) -->    
-    <resultMap id="resultUserArticleList-2" type="Article">
+    <resultMap id="resultUserArticleList-2" type="com.yihaomen.mybatis.model.Article">
         <id property="id" column="aid" />
         <result property="title" column="title" />
         <result property="content" column="content" />        

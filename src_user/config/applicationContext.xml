@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:beans="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context-4.3.xsd
+         http://www.springframework.org/schema/mvc
+         http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd"  >
+
+<!--本示例采用DBCP连接池，应预先把DBCP的jar包复制到工程的lib目录下。 --> 
+
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+     <property name="driverClassName" value="com.mysql.jdbc.Driver"/> 
+     <property name="url" value="jdbc:mysql://127.0.0.1:3306/mybatis?characterEncoding=utf8"/> 
+     <property name="username" value="root"/> 
+     <property name="password" value=""/> 
+  </bean> 
+
+  <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> <!--实现了 spring  的接口，并产生对象 --> 
+     <!--dataSource属性指定要用到的连接池--> 
+     <property name="dataSource" ref="dataSource"/> 
+     <!--configLocation属性指定mybatis的核心配置文件--> 
+     <property name="configLocation" value="config/Configuration.xml"/> 
+  </bean> 
+
+  <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> <!--实现了 spring  的接口，并产生对象 --> 
+     <!--sqlSessionFactory属性指定要用到的SqlSessionFactory实例--> 
+     <property name="sqlSessionFactory" ref="sqlSessionFactory" /> 
+     <!--mapperInterface属性指定映射器接口，用于实现此接口并生成映射器对象--> 
+     <property name="mapperInterface" value="com.yihaomen.mybatis.inter.IUserOperation" /> 
+  </bean> 
+</beans>
